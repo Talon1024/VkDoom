@@ -1,5 +1,4 @@
 /*
-/*
 ** serializer.cpp
 ** Savegame wrapper around RapidJSON
 **
@@ -1194,6 +1193,21 @@ FSerializer &Serialize(FSerializer &arc, const char *key, FTextureID &value, FTe
 			}
 		}
 	}
+	return arc;
+}
+
+//==========================================================================
+//
+//
+//
+//==========================================================================
+
+FSerializer& Serialize(FSerializer& arc, const char* key, FTranslationID& value, FTranslationID* defval)
+{
+	int v = value.index();
+	int* defv = (int*)defval;
+	Serialize(arc, key, v, defv);
+	value = FTranslationID::fromInt(v);
 	return arc;
 }
 

@@ -1360,7 +1360,7 @@ void HWSprite::ProcessParticle (HWDrawInfo *di, FRenderState& state, particle_t 
 
 		if (lump.isValid())
 		{
-			translation = 0;
+			translation = NO_TRANSLATION;
 			//auto tex = TexMan.GetGameTexture(lump, false);
 
 			ul = 0;
