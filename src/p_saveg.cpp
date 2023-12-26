@@ -958,6 +958,9 @@ void FLevelLocals::Serialize(FSerializer &arc, bool hubload)
 	}
 	arc("saveversion", SaveVersion);
 
+	// this sets up some static data needed further down which means it must be done first.
+	StaticSerializeTranslations(arc);
+
 	if (arc.isReading())
 	{
 		Thinkers.DestroyAllThinkers();
@@ -1040,7 +1043,6 @@ void FLevelLocals::Serialize(FSerializer &arc, bool hubload)
 	arc("polyobjs", Polyobjects);
 	SerializeSubsectors(arc, "subsectors");
 	StatusBar->SerializeMessages(arc);
-	StaticSerializeTranslations(arc);
 	canvasTextureInfo.Serialize(arc);
 	SerializePlayers(arc, hubload);
 	SerializeSounds(arc);
@@ -1072,6 +1074,8 @@ void FLevelLocals::Serialize(FSerializer &arc, bool hubload)
 		automap->UpdateShowAllLines();
 
 	}
+	// clean up the static data we allocated
+	StaticClearSerializeTranslationsData();
 
 }
 

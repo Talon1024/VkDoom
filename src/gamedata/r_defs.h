@@ -39,6 +39,7 @@
 #include "fcolormap.h"
 #include "r_sky.h"
 #include "p_terrain.h"
+#include "p_effect.h"
 
 #include "hwrenderer/data/buffers.h"
 #include "hwrenderer/data/hw_levelmesh.h"
@@ -1672,7 +1673,7 @@ struct subsector_t
 	int Index() const { return subsectornum; }
 									// 2: has one-sided walls
 	FPortalCoverage	portalcoverage[2];
-
+	TArray<DVisualThinker *> sprites;
 	DoomLevelMeshSurface** lightmap[2]; // all mesh surfaces belonging to this subsector. Used for lightmapping
 };
 
